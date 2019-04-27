@@ -13,6 +13,7 @@ module.exports = {
     ecmaVersion: 2018,
   },
   rules: {
-    semi: 'off'
+    semi: 'off',
+    'no-console': ['error',{ allow: ['info', 'error'] }] 
   },
 };

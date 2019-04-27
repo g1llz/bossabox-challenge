@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^7.0.0",
+    "mongoose": "^5.5.4",
     "restify": "^8.2.0",
     "restify-cors-middleware": "^1.1.1"
   },
