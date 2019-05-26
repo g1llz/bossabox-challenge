@@ -1,6 +1,6 @@
 ### BACKEND
 > This service provides the registration, search and exclusion of tools.</br>
-> Read more at documentation.
+> Read more in documentation.
 
 **GET STARTED**</br>
 :package: `npm i` to get dependences</br>
