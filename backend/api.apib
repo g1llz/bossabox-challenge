@@ -1,0 +1,152 @@
+FORMAT: 1A
+HOST: http://sample.com.br/api/v1
+
+# BossaBox API
+
+Descrição da Sample.
+
+
+# Group Tools
+
+## List and Create [/tools]
+
+### List all [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {
+                    id: 1,
+                    title: "Notion",
+                    link: "https://notion.so",
+                    description: "All in one tool to organize teams and ideas. Write, plan, collaborate, and get organized. ",
+                    tags: [
+                        "organization",
+                        "planning",
+                        "collaboration",
+                        "writing",
+                        "calendar"
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "json-server",
+                    link: "https://github.com/typicode/json-server",
+                    description: "Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.",
+                    tags: [
+                        "api",
+                        "json",
+                        "schema",
+                        "node",
+                        "github",
+                        "rest"
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "fastify",
+                    link: "https://www.fastify.io/",
+                    description: "Extremely fast and simple, low-overhead web framework for NodeJS. Supports HTTP2.",
+                    tags: [
+                        "web",
+                        "framework",
+                        "node",
+                        "http2",
+                        "https",
+                        "localhost"
+                    ]
+                }
+            ]
+
+
+### Add new tool [POST]
+
++ Request  (application/json)
+
+    + Body
+
+            {
+                "title": "hotel",
+                "link": "https://github.com/typicode/hotel",
+                "description": "Local app manager. Start apps within your browser, developer tool with local .localhost domain and https out of the box.",
+                "tags":["node", "organizing", "webapps", "domain", "developer", "https", "proxy"]
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "title": "hotel",
+                "link": "https://github.com/typicode/hotel",
+                "description": "Local app manager. Start apps within your browser, developer tool with local .localhost domain and https out of the box.",
+                "tags":["node", "organizing", "webapps", "domain", "developer", "https", "proxy"],
+                "id":5
+            }
+
+
+## Filter [/tools{?tag}]
+
++ Parameters
+    + tag: node (string, optional) - Use `tag` to filter tools.
+
+### Filter by tag [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {
+                    id: 2,
+                    title: "json-server",
+                    link: "https://github.com/typicode/json-server",
+                    description: "Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.",
+                    tags: [
+                        "api",
+                        "json",
+                        "schema",
+                        "node",
+                        "github",
+                        "rest"
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "fastify",
+                    link: "https://www.fastify.io/",
+                    description: "Extremely fast and simple, low-overhead web framework for NodeJS. Supports HTTP2.",
+                    tags: [
+                        "web",
+                        "framework",
+                        "node",
+                        "http2",
+                        "https",
+                        "localhost"
+                    ]
+                }
+            ]
+
+
+## Pass Id [/tools/{id}]
+
++ Parameters
+    + id: 101 (number) - The `id` of tool.
+
+### Update tool [PUT]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {}
+
+### Delete tool [DELETE]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {}
