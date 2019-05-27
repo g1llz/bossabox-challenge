@@ -29,6 +29,7 @@ const routes = (server) => {
     const { ...data } = req.body;
     try {
       const tools = await model.tool().create(data);
+      res.status(201);
       res.json(tools);
     } catch (error) {
       res.json(error);
