@@ -7,6 +7,12 @@ const routes = (server) => {
     try {
       if (tag) data = { tags: tag };
       const tools = await model.tool().find(data);
+
+      if (!tools.length) {
+        res.status(404);
+        res.json({ status: 404, message: 'No tool found' });
+        return;
+      }
       res.json(tools);
     } catch (error) {
       res.json(error);
@@ -32,7 +38,18 @@ const routes = (server) => {
       res.status(201);
       res.json(tools);
     } catch (error) {
-      res.json(error);
+      if (error.name === 'ValidationError') {
+        const messages = Object.keys(error.errors).map(key => (
+          { field: key, text: error.errors[key].message }
+        ));
+        res.status(400);
+        res.json({
+          status: 400,
+          errors: messages,
+        });
+        return;
+      }
+      res.json(error)
     }
     next();
   });
