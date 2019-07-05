@@ -3,13 +3,17 @@
 > Read more in documentation.
 
 **GET STARTED**</br>
-:package: `npm i` to get dependences</br>
-:file_folder: copy and rename `.env.example` to `.env` and put your configs!</br>
-:boom: finally, `npm run dev` and BOOM!</br>
+```js
+1 - `npm i` to get dependences
+2 - copy and rename `.env.example` to `.env` and put your configs!
+... and `npm run dev` to BOOM!
+```
 
 By **default**, this API listen in port `3000` but you have to change it in your `.env` file.</br>
 This service persists all data in **MongoDB** and we recommendation the [mLAB](https://mlab.com/) for making the experience more easily.
 
 **RUN DOCUMENTATION**</br>
-:package: `npm install -g aglio`</br>
-:boom: `aglio -i api.apib --theme-full-width --no-theme-condense -s` to run server!
+```js
+1 - `npm install -g aglio`
+... and `npm run doc` to run server and access DOC!
+```
