@@ -3,7 +3,10 @@ HOST: http://sample.com.br/api/v1
 
 # BossaBox API
 
-Descrição da Sample.
+> With this service you can list, add, delete and search all your tools.
+
+The service meets the **BossaBox** challenge specification and you can register all the tools you want</br>
+**ENJOY!**
 
 
 # Group Tools
@@ -139,7 +142,7 @@ Descrição da Sample.
             }
 
 
-## Pass Id [/tools/{id}]
+## Update and Delete [/tools/{id}]
 
 + Parameters
     + id: 101 (number) - The `id` of tool.
@@ -150,7 +153,10 @@ Descrição da Sample.
 
     + Body
 
-            {}
+            {
+                status: 200,
+                message: "Tool updated successfully"
+            }
 
 ### Delete tool [DELETE]
 
