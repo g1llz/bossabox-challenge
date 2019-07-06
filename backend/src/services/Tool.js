@@ -10,7 +10,10 @@ module.exports = {
 
       if (!tools.length) {
         res.status(404);
-        res.json({ status: 404, message: 'No tool found' });
+        res.json({
+          status: 404,
+          message: 'No tool found',
+        });
         return;
       }
       res.json(tools);
@@ -23,6 +26,14 @@ module.exports = {
     const { id } = req.params;
     try {
       const tool = await Tool.findById(id);
+      if (!tool) {
+        res.status(404);
+        res.json({
+          status: 404,
+          message: 'No tool found by id',
+        });
+        return;
+      }
       res.json(tool);
     } catch (error) {
       res.json(error);
@@ -51,12 +62,35 @@ module.exports = {
     }
     next();
   },
+  update: async (req, res, next) => {
+    const { id } = req.params;
+    const { ...data } = req.body;
+    try {
+      await Tool.findByIdAndUpdate(id, data);
+      res.status(200);
+      res.json({
+        status: 200,
+        message: 'Tool updated successfully',
+      });
+    } catch (error) {
+      res.json(error);
+    }
+    next();
+  },
   delete: async (req, res, next) => {
     const { id } = req.params;
     try {
       await Tool.findByIdAndDelete(id);
       res.json({});
     } catch (error) {
+      if (error.name === 'CastError') {
+        res.status(400);
+        res.json({
+          status: 400,
+          error: { kind: error.kind, message: error.message },
+        });
+        return;
+      }
       res.json(error);
     }
     next();
