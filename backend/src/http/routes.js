@@ -5,6 +5,7 @@ const routes = (server) => {
   server.get(`${process.env.URI}/tools`, toolService.list);
   server.get(`${process.env.URI}/tools/:id`, toolService.listById);
   server.post(`${process.env.URI}/tools`, toolService.create);
+  server.patch(`${process.env.URI}/tools/:id`, toolService.update);
   server.del(`${process.env.URI}/tools/:id`, toolService.delete);
 
   server.get(`${process.env.URI}/users`, userService.list);
