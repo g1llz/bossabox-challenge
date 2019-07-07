@@ -3,17 +3,113 @@ HOST: http://sample.com.br/api/v1
 
 # BossaBox API
 
-> With this service you can list, add, delete and search all your tools.
+> With this service you can list, add, delete and search all your tools.</br>
+> **But first you must have an account.**
 
-The service meets the **BossaBox** challenge specification and you can register all the tools you want</br>
+The service meets the **BossaBox** challenge specification and you can register all the tools you want!</br>
+
+**IMPORTANT**
+
+1. TOKEN is needed on almost every route! Remember to send it in your headers.
+2. You have a 'role' check in this API, if you are not an admin, you can only check your user.
+3. Each user can only list, add, edit or search in the tool's own collection
+
 **ENJOY!**
 
+# Group Init
+
+## Authentication [/auth]
+
+### Login [POST]
++ Request  (application/json)
+
+    + Body
+
+            {
+                "email": "llz@xoxo.io",
+                "password": "mysuperpass",
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxsekB4b3hviaWQiOi..."
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "status": 404,
+                "message": "User not found"
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "status": 400,
+                "message": "Email and password is required"
+            }
+## Register [/register]
+
+### Register user [POST]
++ Request  (application/json)
+
+    + Body
+
+            {
+                "name": "Bruce Wayne",
+                "email": "batman@gotham.com",
+                "password": "mysuperpass"
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "status": 201,
+                "message": "User created"
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "status": 400,
+                "errors": [
+                    {
+                        "field": "email",
+                        "text": "is invalid"
+                    }
+                ]
+            }
+            /*
+            {
+                "status": 400,
+                "message": "Name or password or email can't be blank"
+            }
+            */
+
+# Group Users
 
 # Group Tools
 
 ## List and Create [/tools]
 
 ### List all [GET]
++ Request
+    
+    + Headers
+        
+            Content-Type: "application/json",
+            x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxsekB4b3hviaWQiOi..."
 
 + Response 200 (application/json)
 
@@ -65,8 +161,12 @@ The service meets the **BossaBox** challenge specification and you can register 
 
 
 ### Add new tool [POST]
-
-+ Request  (application/json)
++ Request
+    
+    + Headers
+        
+            Content-Type: "application/json",
+            x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxsekB4b3hviaWQiOi..."
 
     + Body
 
@@ -90,11 +190,17 @@ The service meets the **BossaBox** challenge specification and you can register 
             }
 
 ## Filter [/tools{?tag}]
-
 + Parameters
     + tag: node (string, optional) - Use `tag` to filter tools.
 
 ### Filter by tag [GET]
++ Request
+    
+    + Headers
+        
+            Content-Type: "application/json",
+            x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxsekB4b3hviaWQiOi..."
+
 
 + Response 200 (application/json)
 
@@ -141,11 +247,16 @@ The service meets the **BossaBox** challenge specification and you can register 
             }
 
 ## Pass ID [/tools/{id}]
-
 + Parameters
     + id: 5cdb4c24b459ff2013cbae59 (string) - The `id` of tool.
 
 ### List tool [GET]
++ Request
+    
+    + Headers
+        
+            Content-Type: "application/json",
+            x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxsekB4b3hviaWQiOi..."
 
 + Response 200 (application/json)
 
@@ -176,7 +287,13 @@ The service meets the **BossaBox** challenge specification and you can register 
             }
 
 ### Update tool [PUT]
-+ Request  (application/json)
++ Request
+    
+    + Headers
+        
+            Content-Type: "application/json",
+            x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxsekB4b3hviaWQiOi..."
+
 
     + Body
 
@@ -197,6 +314,12 @@ The service meets the **BossaBox** challenge specification and you can register 
             }
 
 ### Delete tool [DELETE]
++ Request
+    
+    + Headers
+        
+            Content-Type: "application/json",
+            x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxsekB4b3hviaWQiOi..."
 
 + Response 200 (application/json)
 
