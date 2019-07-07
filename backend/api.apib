@@ -21,11 +21,11 @@ The service meets the **BossaBox** challenge specification and you can register 
 
             [
                 {
-                    id: 1,
-                    title: "Notion",
-                    link: "https://notion.so",
-                    description: "All in one tool to organize teams and ideas. Write, plan, collaborate, and get organized. ",
-                    tags: [
+                    "_id": "5cdb4c24b459ff2013cbae01",
+                    "title": "Notion",
+                    "link": "https://notion.so",
+                    "description": "All in one tool to organize teams and ideas. Write, plan, collaborate, and get organized. ",
+                    "tags": [
                         "organization",
                         "planning",
                         "collaboration",
@@ -34,11 +34,11 @@ The service meets the **BossaBox** challenge specification and you can register 
                     ]
                 },
                 {
-                    id: 2,
-                    title: "json-server",
-                    link: "https://github.com/typicode/json-server",
-                    description: "Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.",
-                    tags: [
+                    "_id": "5cdb4c24b459ff2013cbae22",
+                    "title": "json-server",
+                    "link": "https://github.com/typicode/json-server",
+                    "description": "Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.",
+                    "tags": [
                         "api",
                         "json",
                         "schema",
@@ -48,11 +48,11 @@ The service meets the **BossaBox** challenge specification and you can register 
                     ]
                 },
                 {
-                    id: 3,
-                    title: "fastify",
-                    link: "https://www.fastify.io/",
-                    description: "Extremely fast and simple, low-overhead web framework for NodeJS. Supports HTTP2.",
-                    tags: [
+                    "_id": "5cdb4c24b459ff2013cbae52",
+                    "title": "fastify",
+                    "link": "https://www.fastify.io/",
+                    "description": "Extremely fast and simple, low-overhead web framework for NodeJS. Supports HTTP2.",
+                    "tags": [
                         "web",
                         "framework",
                         "node",
@@ -82,13 +82,12 @@ The service meets the **BossaBox** challenge specification and you can register 
     + Body
 
             {
+                "_id": "5cdb4c24b459ff2013cbae59",
                 "title": "hotel",
                 "link": "https://github.com/typicode/hotel",
                 "description": "Local app manager. Start apps within your browser, developer tool with local .localhost domain and https out of the box.",
-                "tags":["node", "organizing", "webapps", "domain", "developer", "https", "proxy"],
-                "id":5
+                "tags":["node", "organizing", "webapps", "domain", "developer", "https", "proxy"]
             }
-
 
 ## Filter [/tools{?tag}]
 
@@ -103,11 +102,11 @@ The service meets the **BossaBox** challenge specification and you can register 
 
             [
                 {
-                    id: 2,
-                    title: "json-server",
-                    link: "https://github.com/typicode/json-server",
-                    description: "Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.",
-                    tags: [
+                    "_id": "5cdb4c24b459ff2013cbae59",
+                    "title": "json-server",
+                    "link": "https://github.com/typicode/json-server",
+                    "description": "Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.",
+                    "tags": [
                         "api",
                         "json",
                         "schema",
@@ -117,11 +116,11 @@ The service meets the **BossaBox** challenge specification and you can register 
                     ]
                 },
                 {
-                    id: 3,
-                    title: "fastify",
-                    link: "https://www.fastify.io/",
-                    description: "Extremely fast and simple, low-overhead web framework for NodeJS. Supports HTTP2.",
-                    tags: [
+                    "_id": "5cdb4c24b459ff2013cbae51",
+                    "title": "fastify",
+                    "link": "https://www.fastify.io/",
+                    "description": "Extremely fast and simple, low-overhead web framework for NodeJS. Supports HTTP2.",
+                    "tags": [
                         "web",
                         "framework",
                         "node",
@@ -137,25 +136,64 @@ The service meets the **BossaBox** challenge specification and you can register 
     + Body
 
             {
-                status: 404,
-                message: "No tool found"
+                "status": 404,
+                "message": "No tool found"
             }
 
-
-## Update and Delete [/tools/{id}]
+## Pass ID [/tools/{id}]
 
 + Parameters
-    + id: 101 (number) - The `id` of tool.
+    + id: 5cdb4c24b459ff2013cbae59 (string) - The `id` of tool.
 
-### Update tool [PUT]
+### List tool [GET]
 
 + Response 200 (application/json)
 
     + Body
 
             {
-                status: 200,
-                message: "Tool updated successfully"
+                "_id": "5cdb4c24b459ff2013cbae59",
+                "title": "json-server",
+                "link": "https://github.com/typicode/json-server",
+                "description": "Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.",
+                "tags": [
+                    "api",
+                    "json",
+                    "schema",
+                    "node",
+                    "github",
+                    "rest"
+                ]
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "status": 404,
+                "message": "No tool found by id"
+            }
+
+### Update tool [PUT]
++ Request  (application/json)
+
+    + Body
+
+            {
+                "title": "hotel", // required
+                "link": "https://github.com/typicode/hotel", // required
+                "description": "",
+                "tags":[]
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "status": 200,
+                "message": "Tool updated successfully"
             }
 
 ### Delete tool [DELETE]
