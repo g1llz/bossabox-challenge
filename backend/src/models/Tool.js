@@ -17,6 +17,10 @@ const toolSchema = new mongoose.Schema({
     type: [String],
     require: false,
   },
+  owner: {
+    type: String,
+    required: true,
+  },
 });
 
 const tool = mongoose.model('Tool', toolSchema);
