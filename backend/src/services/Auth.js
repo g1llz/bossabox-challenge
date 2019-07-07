@@ -10,22 +10,16 @@ module.exports = {
         await User.findOne({ email, password: sha1(password) })
           .exec((err, user) => {
             if (err) {
-              res.json({
-                status: 0,
-                message: err,
-              });
+              res.json({ status: 0, message: err });
               return;
             }
             if (!user) {
               res.status(404);
-              res.json({
-                status: 404,
-                message: 'user not found',
-              });
+              res.json({ status: 404, message: 'User not found' });
               return;
             }
             const token = jwt.sign(
-              { email: user.email, id: user._id },
+              { email: user.email, id: user._id, role: user.role },
               process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 },
             );
             res.status(200);
@@ -37,10 +31,7 @@ module.exports = {
       }
     } else {
       res.status(400);
-      res.json({
-        status: 400,
-        message: 'email and password is required',
-      });
+      res.json({ status: 400, message: 'Email and password is required' });
     }
     next();
   },

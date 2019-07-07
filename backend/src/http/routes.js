@@ -13,8 +13,8 @@ const routes = (server) => {
   server.get(`${process.env.URI}/users`, userService.list);
   server.get(`${process.env.URI}/users/:id`, userService.listById);
   server.del(`${process.env.URI}/users/:id`, userService.delete);
+  //
 
-  // TODO: implement role check; document this part;
   server.post(`${process.env.URI}/auth`, authService.login);
   server.post(`${process.env.URI}/register`, userService.create);
 }
