@@ -6,13 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.js",
-    "doc": "aglio -i api.apib --theme-full-width --no-theme-condense -s"
+    "doc": "aglio -i api.apib --theme-full-width --no-theme-condense --server --port 3456"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^7.0.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.4",
     "restify": "^8.2.0",
     "restify-cors-middleware": "^1.1.1",

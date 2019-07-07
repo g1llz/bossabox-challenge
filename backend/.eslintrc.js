@@ -15,6 +15,7 @@ module.exports = {
   rules: {
     semi: 'off',
     'no-console': ['error',{ allow: ['info', 'error'] }],
-    'no-param-reassign': 'off'
+    'no-param-reassign': 'off',
+    'no-underscore-dangle': 'off'
   },
 };
